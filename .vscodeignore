@@ -1,0 +1,10 @@
+.git/
+.vscode/
+node_modules/
+src/
+tsconfig.json
+*.ts
+*.map
+*.mjs
+package.json
+package-lock.json
