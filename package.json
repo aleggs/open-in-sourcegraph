@@ -21,7 +21,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "login": "npx vsce login zacharysnewman",
-    "publish": "npx vsce publish",
+    "publish": "npx vsce publish minor",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
