@@ -7,7 +7,7 @@
 ## Features
 
 - **Quick Access:** Open any file in Sourcegraph directly from VS Code.
-- **Customizable Settings:** Configure the Sourcegraph subdomain, base path, and repository name key path to match your project's structure.
+- **Customizable Settings:** Configure the Sourcegraph subdomain and base path to match your project's structure.
 - **Seamless Integration:** Integrates with the VS Code explorer context menu for easy access.
 
 ## Installation
@@ -20,11 +20,7 @@
 
 ## Usage
 
-1. **Ensure `package.json` Exists:**
-
-   - **Note:** Your project must have a `package.json` file located at the root directory. The extension relies on this file to extract the repository name needed to construct the Sourcegraph URL.
-
-2. **Configure the Extension Settings:**
+1. **Configure the Extension Settings:**
 
    - Open VS Code settings (`Ctrl+,` or `Cmd+,`).
    - Search for **Open in Sourcegraph** to find the extension's settings.
@@ -38,11 +34,7 @@
 
        - The base path used in the Sourcegraph URL (e.g., "code.company.com/path").
 
-     - **Package JSON Repo Key Path (`openInSourcegraph.packageJsonRepoKeyPath`):**
-
-       - The key path in `package.json` to extract the repository name, using dot notation (e.g., "repository.name").
-
-3. **Using the Extension:**
+2. **Using the Extension:**
 
    - In the VS Code explorer, right-click on a file.
    - Select **Open in Sourcegraph** from the context menu.
@@ -64,23 +56,7 @@ The extension can be customized through the following settings:
 - **Default:** "your-base-path"
 - **Description:** The base path in the Sourcegraph URL after the domain. This may include paths specific to your organization's Sourcegraph setup.
 
-### `openInSourcegraph.packageJsonRepoKeyPath`
-
-- **Type:** `string`
-- **Default:** "your.key.path"
-- **Description:** The key path within your `package.json` file where the repository name is located. Use dot notation for nested keys.
-
 ## Example Configuration
-
-Given a `package.json` file with contents like:
-
-```json
-{  
-  "repository": {  
-    "name": "my-cool-repository"  
-  }  
-}
-```
 
 You should configure the extension settings as follows:
 
@@ -92,25 +68,13 @@ You should configure the extension settings as follows:
 
   "code.company.com/path"
 
-- **Package JSON Repo Key Path:**
-
-  "repository.name"
-
 With these settings, the extension constructs the Sourcegraph URL as:
 
 ```
-https://company.sourcegraph.com/code.company.com/path/my-cool-repository/-/blob/<relativeFilePath>
+https://company.sourcegraph.com/code.company.com/path/<workspace-folder>/-/blob/<relativeFilePath>
 ```
 
 ## Troubleshooting
-
-- **Missing `package.json` File:**
-
-  - If you receive an error stating `"package.json not found in the project root."`, ensure that a `package.json` file exists at the root of your workspace. The extension requires this file to retrieve the repository name.
-
-- **Repository Name Not Found:**
-
-  - If you receive an error stating `"Repository name not found in package.json at 'your.key.path'."`, ensure that the `packageJsonRepoKeyPath` correctly points to the repository name in your `package.json`. Verify that the key path matches the structure of your `package.json`.
 
 - **Incorrect URL Structure:**
 

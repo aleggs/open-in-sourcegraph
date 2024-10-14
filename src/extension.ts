@@ -1,6 +1,5 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import * as fs from "fs";
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
@@ -14,23 +13,6 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
 
-      const packageJsonPath = path.join(
-        workspaceFolder.uri.fsPath,
-        "package.json"
-      );
-
-      // Check if package.json exists
-      if (!fs.existsSync(packageJsonPath)) {
-        vscode.window.showErrorMessage(
-          "package.json not found in the project root."
-        );
-        return;
-      }
-
-      // Read and parse package.json
-      const packageJsonContent = fs.readFileSync(packageJsonPath, "utf8");
-      const packageJson = JSON.parse(packageJsonContent);
-
       // Read settings from configuration
       const config = vscode.workspace.getConfiguration("openInSourcegraph");
       const subdomain = config.get<string>(
@@ -38,20 +20,9 @@ export function activate(context: vscode.ExtensionContext) {
         "your-subdomain"
       );
       const basePath = config.get<string>("basePath", "your-base-path");
-      const repoKeyPath = config.get<string>(
-        "packageJsonRepoKeyPath",
-        "your.key.path"
-      );
 
-      // Extract repository name from package.json using the repoKeyPath
-      const repoName = getValueFromPackageJson(packageJson, repoKeyPath);
-
-      if (!repoName) {
-        vscode.window.showErrorMessage(
-          `Repository name not found in package.json at '${repoKeyPath}'.`
-        );
-        return;
-      }
+      // Extract repository name from workspace folder
+      const repoName = workspaceFolder.name;
 
       // Get the file path relative to the repository root
       const relativeFilePath = path.relative(
@@ -73,17 +44,3 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
-
-// Helper function to get value from package.json using key path
-function getValueFromPackageJson(obj: any, keyPath: string): any {
-  const keys = keyPath.split(".");
-  let value = obj;
-  for (const key of keys) {
-    if (value && typeof value === "object" && key in value) {
-      value = value[key];
-    } else {
-      return null;
-    }
-  }
-  return value;
-}
