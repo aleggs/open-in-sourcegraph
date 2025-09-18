@@ -56,6 +56,11 @@ The extension can be customized through the following settings:
 - **Default:** "your-base-path"
 - **Description:** The base path in the Sourcegraph URL after the domain. This may include paths specific to your organization's Sourcegraph setup.
 
+### `openInSourcegraph.repositoryAlias`
+- **Type:** `string`
+- **Default:** ""
+- **Description:** "Optional: If your repository's name on sourcegraph is different from the name on your local environment, you may need to set this variable to the sourcegraph path."
+
 ## Example Configuration
 
 You should configure the extension settings as follows:

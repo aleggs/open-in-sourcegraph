@@ -67,6 +67,11 @@
           "type": "string",
           "default": "your-base-path",
           "description": "The base path used in the Sourcegraph URL."
+        },
+        "openInSourcegraph.repoAlias": {
+          "type": "string",
+          "default": "",
+          "description": "Optional: The repository alias to use in the Sourcegraph URL. If left blank, the repository name will be used."
         }
       }
     }
