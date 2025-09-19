@@ -2,7 +2,7 @@
   "name": "open-in-sourcegraph-2",
   "displayName": "Open in Sourcegraph 2",
   "description": "Quickly open files in Sourcegraph from VS Code. Forked from Zach Newman's original extension to add support for custom base paths and repository aliases.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "aleggs",
   "engines": {
     "vscode": "^1.94.0"
