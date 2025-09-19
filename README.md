@@ -1,6 +1,7 @@
 # Open in Sourcegraph
 
 ## Overview
+This repo was forked from https://github.com/zacharysnewman/open-in-sourcegraph to add a few features.
 
 **Open in Sourcegraph** is a Visual Studio Code extension that allows you to quickly open files from your project directly in Sourcegraph. With a simple right-click, you can navigate to the corresponding file in your organization's Sourcegraph instance.
 
